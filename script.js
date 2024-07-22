@@ -31,23 +31,25 @@ const puppeteer = require('puppeteer');
     process.exit(1);
   }
 
-  const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
+  const browser = await puppeteer.launch({
+    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-gpu', '--window-size=1920,1080'],
+    headless: true
+  });
   const page = await browser.newPage();
 
-  // Ожидание полной загрузки страницы
+  // Переход на страницу и ожидание загрузки
   await page.goto(url, { waitUntil: 'networkidle2' });
 
-  // Дополнительное ожидание, если нужно
-  await page.waitForTimeout(10000);
+  // Явное ожидание для динамического контента
+  await page.waitForSelector('#dynamic-element', { visible: true });
 
-  // Проверка на наличие ошибок в консоли страницы
-  page.on('console', msg => console.log('PAGE LOG:', msg.text()));
-
-  // Опционально: выполнение дополнительного JavaScript на странице
+  // Выполнение JavaScript на странице, если нужно
   await page.evaluate(() => {
     console.log('Page loaded and evaluated');
-    // Добавьте здесь код для взаимодействия с DOM
   });
+
+  // Ожидание перед закрытием браузера
+  await page.waitForTimeout(10000);
 
   const html = await page.content();
   await browser.close();
