@@ -16,7 +16,8 @@ const puppeteer = require('puppeteer');
   await page.waitForTimeout(10000);
 
   // Закрытие браузера
+  const html = await page.content();
   await browser.close();
 
-  console.log('Website rendered and closed after 5 seconds.');
+  console.log(html);
 })();
