@@ -13,7 +13,7 @@ const puppeteer = require('puppeteer');
   await page.goto(url);
 
   // Ожидание 5 секунд
-  await page.waitForTimeout(5000);
+  await page.waitForTimeout(10000);
 
   // Закрытие браузера
   await browser.close();
