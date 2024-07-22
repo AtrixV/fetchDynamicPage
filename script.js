@@ -1,4 +1,5 @@
 const puppeteer = require('puppeteer');
+const secondWait = 5;
 
 (async () => {
   const url = process.env.WEBSITE_URL; // Получаем URL из переменных окружения
@@ -13,7 +14,7 @@ const puppeteer = require('puppeteer');
   await page.goto(url);
 
   // Ожидание 5 секунд
-  await page.waitForTimeout(10000);
+  await page.waitForTimeout(secondWait * 1000);
 
   // Закрытие браузера
   const html = await page.content();
