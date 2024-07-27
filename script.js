@@ -2,13 +2,9 @@ const puppeteer = require('puppeteer');
 
 (async () => {
   const url = process.env.WEBSITE_URL; // Получаем URL из переменных окружения
-  let duration //= parseInt(process.env.DURATION, 10); // Получаем время в секундах из переменных окружения
-  if (!url || isNaN(duration)) {
-    console.error('URL or duration not provided correctly');
+  if (!url) {
+    console.error('No URL provided');
     process.exit(1);
-  }
-  if (!duration) {
-    duration = 5;
   }
 
   const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
@@ -16,14 +12,15 @@ const puppeteer = require('puppeteer');
 
   await page.goto(url);
 
-  // Ожидание указанного количества секунд
-  await page.waitForTimeout(duration * 1000);
+  // Ожидание 5 секунд
+  await page.waitForTimeout(5000);
 
   // Закрытие браузера
   await browser.close();
 
-  console.log(`Website rendered and closed after ${duration} seconds.`);
+  console.log('Website rendered and closed after 5 seconds.');
 })();
+
 
 
 // const puppeteer = require('puppeteer');
