@@ -7,7 +7,7 @@ const puppeteer = require('puppeteer');
     console.error('No URL provided');
     process.exit(1);
   }
-   if (!secondWait) {
+   if (!duration) {
     duration = 5;
   }
   
