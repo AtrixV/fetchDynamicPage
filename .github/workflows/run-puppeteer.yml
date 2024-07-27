@@ -11,7 +11,7 @@ on:
       duration:
         description: 'Duration in seconds to keep the website open'
         required: true
-        default: 5
+        #default: 5
         type: number
 
 jobs:
