@@ -1,13 +1,16 @@
 const puppeteer = require('puppeteer');
-const secondWait = 5;
 
 (async () => {
   const url = process.env.WEBSITE_URL; // Получаем URL из переменных окружения
+  const secondWait = parseInt(process.env.DURATION, 10);
   if (!url) {
     console.error('No URL provided');
     process.exit(1);
   }
-
+   if (!secondWait) {
+    secondWait = 5;
+  }
+  
   const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
   const page = await browser.newPage();
 
