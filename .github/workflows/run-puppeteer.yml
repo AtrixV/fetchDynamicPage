@@ -7,6 +7,10 @@ on:
         description: 'URL of the website to render'
         required: true
         default: 'https://example.com'
+      duration:
+        description: 'Duration in seconds to keep the website open'
+        required: true
+        default: '5'
 
 jobs:
   build:
@@ -26,6 +30,6 @@ jobs:
 
       - name: Run Puppeteer script
         env:
-          WEBSITE_URL: ${{ github.event.inputs.url }}
+          WEBSITE_URL: ${{ github.event.inputs.url }} # Передаем URL как переменную окружения
           DURATION: ${{ github.event.inputs.duration }} # Передаем время как переменную окружения
         run: npm start
