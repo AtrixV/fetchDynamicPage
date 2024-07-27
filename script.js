@@ -2,7 +2,7 @@ const puppeteer = require('puppeteer');
 
 (async () => {
   const url = process.env.WEBSITE_URL; // Получаем URL из переменных окружения
-  const duration = parseInt(process.env.DURATION, 10); // Получаем время в секундах из переменных окружения
+  let duration //= parseInt(process.env.DURATION, 10); // Получаем время в секундах из переменных окружения
   if (!url || isNaN(duration)) {
     console.error('URL or duration not provided correctly');
     process.exit(1);
