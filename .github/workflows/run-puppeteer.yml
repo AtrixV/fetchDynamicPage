@@ -27,4 +27,5 @@ jobs:
       - name: Run Puppeteer script
         env:
           WEBSITE_URL: ${{ github.event.inputs.url }}
+          DURATION: ${{ github.event.inputs.duration }} # Передаем время как переменную окружения
         run: npm start
