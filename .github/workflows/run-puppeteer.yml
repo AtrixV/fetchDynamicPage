@@ -7,10 +7,12 @@ on:
         description: 'URL of the website to render'
         required: true
         default: 'https://example.com'
+        type: string
       duration:
         description: 'Duration in seconds to keep the website open'
         required: true
         default: '5'
+        type: number
 
 jobs:
   build:
