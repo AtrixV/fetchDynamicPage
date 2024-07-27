@@ -2,29 +2,55 @@ const puppeteer = require('puppeteer');
 
 (async () => {
   const url = process.env.WEBSITE_URL; // Получаем URL из переменных окружения
-  const duration = parseInt(process.env.DURATION, 10);
-  if (!url) {
-    console.error('No URL provided');
+  const duration = parseInt(process.env.DURATION, 10); // Получаем время в секундах из переменных окружения
+  if (!url || isNaN(duration)) {
+    console.error('URL or duration not provided correctly');
     process.exit(1);
   }
-   if (!duration) {
+  if (!duration) {
     duration = 5;
   }
-  
+
   const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
   const page = await browser.newPage();
 
   await page.goto(url);
 
-  // Ожидание 5 секунд
+  // Ожидание указанного количества секунд
   await page.waitForTimeout(duration * 1000);
 
   // Закрытие браузера
-  const html = await page.content();
   await browser.close();
 
-  console.log(html);
+  console.log(`Website rendered and closed after ${duration} seconds.`);
 })();
+
+
+// const puppeteer = require('puppeteer');
+
+// (async () => {
+//   const url = process.env.WEBSITE_URL; // Получаем URL из переменных окружения
+//   const duration = parseInt(process.env.DURATION, 10);
+//   if (!url) {
+//     console.error('No URL provided');
+//     process.exit(1);
+//   }
+
+  
+//   const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
+//   const page = await browser.newPage();
+
+//   await page.goto(url);
+
+//   // Ожидание 5 секунд
+//   await page.waitForTimeout(duration * 1000);
+
+//   // Закрытие браузера
+//   const html = await page.content();
+//   await browser.close();
+
+//   console.log(html);
+// })();
 
 // const puppeteer = require('puppeteer');
 
