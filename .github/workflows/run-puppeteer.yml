@@ -11,9 +11,8 @@ on:
       duration:
         description: 'Duration in seconds to keep the website open'
         required: true
-        type: number
         default: 5
-        
+        type: number
 
 jobs:
   build:
@@ -34,5 +33,5 @@ jobs:
       - name: Run Puppeteer script
         env:
           WEBSITE_URL: ${{ github.event.inputs.url }}
-         DURATION: ${{ github.event.inputs.duration }}
+          DURATION: ${{ github.event.inputs.duration }}
         run: npm start
