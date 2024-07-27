@@ -8,11 +8,11 @@ on:
         required: true
         default: 'https://example.com'
         type: string
-      #duration:
-       # description: 'Duration in seconds to keep the website open'
-       # required: true
-       # type: number
-       # default: 5
+      duration:
+        description: 'Duration in seconds to keep the website open'
+        required: true
+        type: number
+        default: 5
         
 
 jobs:
@@ -34,5 +34,5 @@ jobs:
       - name: Run Puppeteer script
         env:
           WEBSITE_URL: ${{ github.event.inputs.url }}
-         # DURATION: ${{ github.event.inputs.duration }}
+         DURATION: ${{ github.event.inputs.duration }}
         run: npm start
