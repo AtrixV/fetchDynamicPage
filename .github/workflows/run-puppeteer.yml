@@ -6,12 +6,12 @@ on:
       url:
         description: 'URL of the website to render'
         required: true
-       # default: 'https://example.com'
+        default: 'https://example.com'
         type: string
-      duration:
-        description: 'Duration in seconds to keep the website open'
-        required: true
-        type: number
+      #duration:
+       # description: 'Duration in seconds to keep the website open'
+       # required: true
+       # type: number
        # default: 5
         
 
